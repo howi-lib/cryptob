@@ -1,13 +1,20 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 
 	"github.com/howi-lib/cryptob"
 )
 
+var address string
+
+func init() {
+	flag.StringVar(&address, "address", "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", "Your BTC address")
+
+}
 func main() {
-	address := "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+	flag.Parse()
 	symbol := "BTC"
 
 	wallet, err := cryptob.Load(symbol, address)
