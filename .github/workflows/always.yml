@@ -1,0 +1,8 @@
+name: always
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: "echo \"this job runs always\""
