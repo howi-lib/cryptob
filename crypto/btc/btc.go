@@ -42,7 +42,9 @@ func (btc BTC) Name() string {
 // Balance returns amount of crypto in this wallet
 func (btc BTC) Balance() float64 {
 	// DEMO
-	resp, err := http.Get("https://api-r.bitcoinchain.com/v1/address/" + btc.Address())
+	url := "https://api-r.bitcoinchain.com/v1/address/" + btc.Address()
+	fmt.Println("fetch: ", url)
+	resp, err := http.Get(url)
 	if err != nil {
 		return 0.00
 	}
@@ -50,7 +52,6 @@ func (btc BTC) Balance() float64 {
 	var response []response
 	decoder := json.NewDecoder(resp.Body)
 	if err := decoder.Decode(&response); err != nil {
-		fmt.Println(err)
 		return 0.00
 	}
 	return response[0].Balance
